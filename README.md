@@ -1,67 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Academy Learning Management System (LMS)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
+This is a comprehensive Learning Management System built with the Laravel framework. It features robust capabilities for course management, payment gateways, student learning, and instructor dashboards.
 
-## About Laravel
+## Architecture and Directory Structure
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The application follows the standard Laravel MVC (Model-View-Controller) architecture. Below is an overview of the key directories and their purpose within the project:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+*   **`app/`**: Contains the core application code.
+    *   **`Http/Controllers/`**: Houses the logic for handling incoming HTTPS requests. Key controllers include `CourseController`, `PaymentController`, `InstallController`, and various controllers separated by role (`Admin`, `Instructor`, `frontend`).
+    *   **`Http/Middleware/`**: Contains middleware for filtering requests (e.g., authentication checks, role verification).
+    *   **`Models/`**: Eloquent ORM models representing database tables (e.g., `User`, `Course`, `Lesson`, `Category`, `CartItem`, `Payment_gateway`).
+*   **`config/`**: Contains all of the configuration files for the application (database, mail, services, authentication).
+*   **`database/`**: 
+    *   **`migrations/`**: Version control for the database schema.
+    *   **`seeders/`**: Classes used to populate the database with test or default data.
+*   **`public/`**: The document root for the application. Contains the `index.php` entry point, compiled assets (CSS, JS, images), and the base `install.sql` file used for the initial database structure.
+*   **`resources/`**: 
+    *   **`views/`**: Contains the Blade view templates for the frontend, admin panel, and instructor dashboards.
+*   **`routes/`**: Contains all the route definitions for the application, split into semantic files:
+    *   `web.php`: Standard web routes.
+    *   `admin.php`: Routes specific to the admin panel.
+    *   `instructor.php`: Routes specific to instructor functionalities.
+    *   `student.php`: Routes specific to student dashboards.
+    *   `guest.php`: Routes for unauthenticated users.
+    *   `api.php`: API endpoints.
+*   **`storage/`**: Contains compiled Blade templates, file-based sessions, file caches, and application logs.
+*   **`docker/`** & **`docker-compose.yml`**: Configuration files for running the application within isolated Docker containers (Nginx, PHP-FPM, MySQL, Redis, phpMyAdmin).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Key Features
 
-## Learning Laravel
+*   **Role-Based Access Control**: Supports Admin, Instructor, and Student roles with distinct dashboards and permissions.
+*   **Course Management**: Create, edit, and organize courses with sections and various lesson types (video, document, iframe, quizzes).
+*   **Payment Integration**: Integrated with multiple payment gateways including Stripe, PayPal, Razorpay, Paystack, Flutterwave, and offline payments.
+*   **Configurable Frontend**: Dynamic homepage and theme settings managed via the database and Blade components.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Local Installation & Deployment (Docker)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+This project is configured to run easily using Docker and Docker Compose.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1.  **Clone the repository:**
+    ```bash
+    git clone git@github.com:akhilsabuv/LMS.git
+    cd Academy-LMS
+    ```
 
-## Laravel Sponsors
+2.  **Start the services:**
+    ```bash
+    docker-compose up -d --build
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+3.  **Install PHP Dependencies:**
+    ```bash
+    docker-compose exec app composer install
+    ```
 
-### Premium Partners
+4.  **Database Setup:**
+    The application structure is primarily initialized using a base SQL dump file rather than just migrations.
+    ```bash
+    docker-compose exec -T db mysql -u root -p[your_root_password] [database_name] < public/assets/install.sql
+    docker-compose exec app php artisan migrate
+    docker-compose exec app php artisan config:clear
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Default Access Credentials
 
-## Contributing
+After successful installation and database setup, you can access the application using the default administrator credentials:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+*   **URL**: `http://localhost:8000/login`
+*   **Email**: `admin@stockfordedu.com`
+*   **Password**: `12345678`
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# academy-laravel
+To access the database interface (phpMyAdmin):
+*   **URL**: `http://localhost:8080`
