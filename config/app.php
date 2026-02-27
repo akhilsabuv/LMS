@@ -2,15 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 
-$http_status = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
-$http_hostname = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '127.0.0.1';
-$script_name = isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME'] : '/index.php';
-$app_url = $http_status . "://" . $http_hostname . $script_name;
-$app_url = str_replace('/index.php', '', $app_url);
-$app_url = explode("/view/", $app_url)[0];
-
-$asset_url = file_exists('public') ? $app_url . '/public' : $app_url;
-
+// Dangerous dynamic $_SERVER evaluation removed to support CLI config caching
 
 return [
 
@@ -64,9 +56,9 @@ return [
     |
     */
 
-    'url' => $app_url,
+    'url' => env('APP_URL', 'http://localhost'),
 
-    'asset_url' => $asset_url,
+    'asset_url' => env('ASSET_URL', null),
 
     /*
     |--------------------------------------------------------------------------
