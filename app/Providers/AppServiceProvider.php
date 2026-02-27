@@ -23,8 +23,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
         
-        // Force HTTPS if APP_URL operates on https
-        if (str_contains(env('APP_URL'), 'https://')) {
+        // Force HTTPS for production domain
+        if (str_contains(request()->getHost(), 'lms.stockfordedu.com') || env('APP_ENV') === 'production') {
             URL::forceScheme('https');
         }
     }
