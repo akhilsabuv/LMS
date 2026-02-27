@@ -217,7 +217,7 @@ class CustomerSupportController extends Controller
         $data["question"] = $request->question;
         $data["answer"]   = $request->answer;
 
-        TicketFaq::insert($data);
+        TicketFaq::create($data);
         Session::flash('success', get_phrase('Added successfully'));
         return redirect()->back();
     }
@@ -293,7 +293,7 @@ class CustomerSupportController extends Controller
         $data["title"]       = $request->title;
         $data["description"] = $request->description;
 
-        TicketMacro::insert($data);
+        TicketMacro::create($data);
         Session::flash('success', get_phrase('Added successfully'));
         return redirect()->back();
     }
@@ -346,7 +346,7 @@ class CustomerSupportController extends Controller
         $data["title"]  = $request->title;
         $data["status"] = $request->status;
 
-        TicketCategory::insert($data);
+        TicketCategory::create($data);
         Session::flash('success', get_phrase('Added successfully'));
         return redirect()->back();
     }
@@ -399,7 +399,7 @@ class CustomerSupportController extends Controller
         $data["title"]  = $request->title;
         $data["status"] = $request->status;
 
-        TicketPriority::insert($data);
+        TicketPriority::create($data);
         Session::flash('success', get_phrase('Added successfully'));
         return redirect()->back();
     }
@@ -460,7 +460,7 @@ class CustomerSupportController extends Controller
         $data['default_view'] = $request->default_view;
         $data['color']        = $request->color;
 
-        TicketStatus::insert($data);
+        TicketStatus::create($data);
         Session::flash('success', get_phrase('Added successfully'));
         return redirect()->back();
     }
