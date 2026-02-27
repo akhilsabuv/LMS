@@ -51,7 +51,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/tagify-master/dist/tagify.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Custom Style -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/default/css/custom_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/frontend/default/css/custom_style.css') }}?v={{ time() }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/default/css/new_responsive.css') }}">
 
     <!-- Jquery Js -->

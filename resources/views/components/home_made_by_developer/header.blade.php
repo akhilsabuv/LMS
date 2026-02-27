@@ -23,7 +23,6 @@
                 <div class="header-menu d-flex justify-content-end me-lg-auto ms-lg-0 ms-auto mt-2 pt-1">
                     <div class="nav-menu w-100">
                         <ul class="primary-menu main-menu-ul d-flex align-items-center w-100 drop-area">
-                            <li><a href="{{ route('home') }}" class="@if ($current_route == 'home') active @endif">{{ get_phrase('Home') }}</a></li>
                             {{-- <li class="have-mega-menu"><a class="menu-parent-a @if ($current_route == 'home') active @endif" href="{{ route('home') }}">{{ get_phrase('Home') }}</a>
                                 <ul class="mega-dropdown-menu mega main-mega-menu">
                                     <div class="mega-menu-items">
@@ -347,7 +346,6 @@
                                     <hr>
                             </li> @endauth
 
-                            <li><a href="{{ route('home') }}" class="btn btn-toggle-list d-inline-flex align-items-center text-16px fw-500 w-100 rounded border-0 py-3"> {{ get_phrase('Home') }}</a></li>
                             <li>
                                 <button class="btn btn-toggle d-inline-flex align-items-center text-16px fw-500 w-100 collapsed rounded border-0 py-3" data-bs-toggle="collapse" data-bs-target="#category-collapse" aria-expanded="false">
                                     {{ get_phrase('Courses') }}

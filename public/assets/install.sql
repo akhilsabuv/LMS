@@ -2544,8 +2544,8 @@ CREATE TABLE `settings` (
 
 INSERT INTO `settings` (`id`, `type`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'language', 'english', '2023-10-29 05:36:40', '2024-09-24 05:51:14'),
-(2, 'system_name', 'Academy LMS', '2023-10-29 05:36:40', '2024-09-24 05:51:14'),
-(3, 'system_title', 'Academy Learning Club', '2023-10-29 05:36:40', '2024-09-24 05:51:14'),
+(2, 'system_name', 'EduNova', '2023-10-29 05:36:40', '2024-09-24 05:51:14'),
+(3, 'system_title', 'EduNova', '2023-10-29 05:36:40', '2024-09-24 05:51:14'),
 (4, 'system_email', 'academy@example.com', '2023-10-29 05:36:40', '2024-09-24 05:51:14'),
 (5, 'address', 'Sydney, Australia', '2023-10-29 05:36:40', '2024-09-24 05:51:14'),
 (6, 'phone', '+143-52-9933631', '2023-10-29 05:36:40', '2024-09-24 05:51:14'),

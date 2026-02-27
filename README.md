@@ -1,6 +1,4 @@
-# Academy Learning Management System (LMS)
-
-## Overview
+# EduNova Learning Management System (LMS)## Overview
 This is a comprehensive Learning Management System built with the Laravel framework. It features robust capabilities for course management, payment gateways, student learning, and instructor dashboards.
 
 ## Architecture and Directory Structure

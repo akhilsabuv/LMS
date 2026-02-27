@@ -15,12 +15,12 @@
         <section class="login-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-7 col-md-6">
+                    <div class="col-lg-7 col-md-6 order-2 order-md-1">
                         <div class="login-img">
                             <img src="{{ asset('assets/frontend/default/image/login.gif') }}" alt="...">
                         </div>
                     </div>
-                    <div class="col-lg-5 col-md-6">
+                    <div class="col-lg-5 col-md-6 order-1 order-md-2">
                         <form action="{{ route('login') }}" class="global-form login-form mt-25" id="login-form" method="POST">
                             @csrf
                             <h4 class="g-title">{{ get_phrase('Login') }}</h4>
