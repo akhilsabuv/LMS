@@ -10,5 +10,5 @@ Route::controller(CourseController::class)->group(function () {
 });
 
 Route::controller(MycourseController::class)->middleware('auth')->group(function () {
-    Route::get('Invoice/{id}', 'invoice')->name('invoice');
+    Route::get('Invoice/{id}', 'invoice')->name('mycourse.invoice');
 });
