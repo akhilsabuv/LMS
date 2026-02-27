@@ -18,9 +18,10 @@ class SeoController extends Controller
         $page_data['seo_meta_tags'] = SeoField::whereNull('course_id')
                                         ->whereNull('blog_id')
                                         ->whereNull('bootcamp_id')
+                                        ->where('route', '!=', 'Home')
                                         ->get();
                                         
-        $page_data['active_tab'] = !empty($active_tab) ? slugify($active_tab) : 'home';
+        $page_data['active_tab'] = !empty($active_tab) ? slugify($active_tab) : slugify($page_data['seo_meta_tags']->first()->route ?? '');
 
         return view("admin.setting.seo_setting", $page_data);
     }
